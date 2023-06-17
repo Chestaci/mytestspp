@@ -1,0 +1,33 @@
+version: '3.2'
+
+services:
+  mytest:
+    image: mytest
+    container_name: mytest
+    build:
+      context: .
+#      dockerfile: Dockerfile
+    command: mvn clean test
+    ports:
+      - 0.0.0.0:5555:5555
+
+  selenoid1:
+    container_name: selenoid1
+    image: "aerokube/selenoid:latest-release"
+    ports:
+      - "4444:4444"
+    volumes:
+      - ./config/:/etc/selenoid/:ro
+      - ./video:/opt/selenoid/video
+      - ./logs:/opt/selenoid/logs
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: ["-conf", "/etc/selenoid/browsers.json", "-container-network", "ui-test_selenoid", "-limit", "10", "-retry-count", "2"]
+
+  selenoid-ui1:
+    container_name: selenoid-ui1
+    image: "aerokube/selenoid-ui:latest-release"
+    links:
+      - selenoid1
+    ports:
+      - "8080:8080"
+    command: ["--selenoid-uri", "http://selenoid:4444"]
