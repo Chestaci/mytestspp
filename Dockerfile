@@ -1,4 +1,4 @@
-FROM adoptopenjdk/maven-openjdk11 AS build
+FROM adoptopenjdk/maven-openjdk11
 
 WORKDIR /app
 
