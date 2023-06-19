@@ -9,9 +9,7 @@
   stages {
      stage("Build image") {
         steps {
-        docker version
-        docker info
-        docker compose version
+        docker compose up
         }
        }
      }
