@@ -1,4 +1,4 @@
-FROM adoptopenjdk/maven-openjdk11
+FROM avalonlab/maven-openjdk14
 
 WORKDIR /app
 

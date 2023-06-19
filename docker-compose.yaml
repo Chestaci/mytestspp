@@ -4,30 +4,96 @@ services:
   mytest:
     image: mytest
     container_name: mytest
+    networks:
+      - mynet
     build:
       context: .
 #      dockerfile: Dockerfile
     command: mvn clean test
     ports:
       - 0.0.0.0:5555:5555
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
-  selenoid1:
-    container_name: selenoid1
-    image: "aerokube/selenoid:latest-release"
+  selenoid:
+    image: "aerokube/selenoid"
+    networks:
+      - mynet
     ports:
       - "4444:4444"
     volumes:
-      - ./config/:/etc/selenoid/:ro
-      - ./video:/opt/selenoid/video
-      - ./logs:/opt/selenoid/logs
-      - /var/run/docker.sock:/var/run/docker.sock
-    command: ["-conf", "/etc/selenoid/browsers.json", "-container-network", "ui-test_selenoid", "-limit", "10", "-retry-count", "2"]
+      - ".:/etc/selenoid/" # assumed current dir contains browsers.json
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    command: ["-conf", "/etc/selenoid/browsers.json", "-container-network", "mytestspp_mynet", "-limit", "10", "-retry-count", "2"]
 
-  selenoid-ui1:
-    container_name: selenoid-ui1
-    image: "aerokube/selenoid-ui:latest-release"
+  selenoid-ui:
+    image: "aerokube/selenoid-ui"
+    networks:
+      - mynet
     links:
-      - selenoid1
+      - selenoid
     ports:
       - "8080:8080"
     command: ["--selenoid-uri", "http://selenoid:4444"]
+networks:
+  mynet:
+
+
+
+#/////////////////////////////////////
+
+#version: '3'
+#services:
+#  tests:
+#    build: .
+#    volumes:
+#      - .:/app
+#      - ~/.m2:/root/.m2
+#    depends_on:
+#      - selenoid
+#    environment:
+#      - SELENOID_URL=http://selenoid:4444/wd/hub
+#    command: mvn clean test
+#
+#  selenoid:
+#    image: aerokube/selenoid:latest-release
+#    network_mode: bridge
+#    ports:
+#      - "4444:4444"
+#    volumes:
+#      - "/var/run/docker.sock:/var/run/docker.sock"
+#      - "./config:/etc/selenoid"
+
+
+
+
+
+
+
+
+
+
+#    ///////////////////////////////////////
+
+
+
+#  selenoid1:
+#    container_name: selenoid1
+#    image: "aerokube/selenoid:latest-release"
+#    ports:
+#      - "4444:4444"
+#    volumes:
+#      - ./config/:/etc/selenoid/:ro
+#      - ./video:/opt/selenoid/video
+#      - ./logs:/opt/selenoid/logs
+#      - /var/run/docker.sock:/var/run/docker.sock
+#    command: ["-conf", "/etc/selenoid/browsers.json", "-container-network", "ui-test_selenoid", "-limit", "10", "-retry-count", "2"]
+#
+#  selenoid-ui1:
+#    container_name: selenoid-ui1
+#    image: "aerokube/selenoid-ui:latest-release"
+#    links:
+#      - selenoid1
+#    ports:
+#      - "8080:8080"
+#    command: ["--selenoid-uri", "http://selenoid1:4444"]

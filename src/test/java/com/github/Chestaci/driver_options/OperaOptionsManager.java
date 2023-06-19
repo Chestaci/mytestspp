@@ -18,7 +18,7 @@ public class OperaOptionsManager {
         options.addArguments("--disable-dev-shm-usage"); // overcome limited resource problems
         options.addArguments("--no-sandbox");
         options.addArguments("--remote-allow-origins=*");
-     //   options.addArguments("--headless=new");
+        options.addArguments("--headless=new");
         options.setCapability("selenoid:options", new HashMap<String, Object>() {{
             put("enableVNC", true);
         }});
