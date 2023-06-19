@@ -6,6 +6,7 @@ services:
     container_name: mytest
     depends_on:
       - selenoid
+      - selenoid-ui
     networks:
       - mynet
     build:
