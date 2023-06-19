@@ -10,7 +10,10 @@ properties([disabledConcurrentBuilds()])
      stage("Build image") {
         steps {
         sh'''
-        docker compose --version
+        docker version
+        docker info
+        docker compose version
+        curl --version
         '''
         }
        }
