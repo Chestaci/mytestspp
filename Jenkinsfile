@@ -1,4 +1,4 @@
-
+properties([disabledConcurrentBuilds()])
 
 
 
@@ -9,7 +9,9 @@
   stages {
      stage("Build image") {
         steps {
-        docker compose up
+        sh'''
+        docker compose --version
+        '''
         }
        }
      }
