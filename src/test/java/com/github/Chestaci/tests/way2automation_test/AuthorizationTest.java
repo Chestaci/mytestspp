@@ -158,12 +158,12 @@ public class AuthorizationTest{
     /**
      * Падающий тест для демонстрации прикрепления скриншотов в отчёте при падении теста
      */
-//    @Test
-//    @Severity(value = SeverityLevel.TRIVIAL)
-//    @Feature("Падающий тест")
-//    @Story("Падающий тест для демонстрации прикрепления скриншотов в отчёте")
-//    public void failTestAuthorizationTest(){
-//        loginPage.clearFields();
-//        Assertions.fail("Fail authorization test");
-//    }
+    @Test
+    @Severity(value = SeverityLevel.TRIVIAL)
+    @Feature("Падающий тест")
+    @Story("Падающий тест для демонстрации прикрепления скриншотов в отчёте")
+    public void failTestAuthorizationTest(){
+        loginPage.clearFields();
+        Assertions.fail("Fail authorization test");
+    }
 }
