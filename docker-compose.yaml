@@ -11,8 +11,6 @@ services:
       - mynet
     build:
       context: .
-#    volumes:
-#      - ./target/allure-results:/app/allure-results
     command: mvn clean test allure:report
     environment:
       - ALLURE_RESULTS_PATH=/app/allure-results
@@ -21,25 +19,12 @@ services:
     volumes:
       - .:/app
       - allure-results:/app/allure-results
-volumes:
-  allure-results:
 
-#    ports:
-#      - 0.0.0.0:5555:5555
-#    extra_hosts:
-#      - "host.docker.internal:host-gateway"
-#    volumes:
-#    - ./allure-results:/app/allure-results
-#    command: [ "sh", "-c", "pytest --alluredir=/app/allure-results && allure generate /app/allure-results --clean -o /app/allure-report" ]
-#    ports:
-#        - "80:80"
 
   selenoid:
     image: "aerokube/selenoid"
     networks:
       - mynet
-#    ports:
-#      - "4444:4444"
     volumes:
       - ".:/etc/selenoid/" # assumed current dir contains browsers.json
       - "/var/run/docker.sock:/var/run/docker.sock"
@@ -57,3 +42,5 @@ volumes:
 networks:
   mynet:
 
+volumes:
+  allure-results:
