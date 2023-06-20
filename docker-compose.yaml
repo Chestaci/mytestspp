@@ -18,7 +18,7 @@ services:
       - "8081:8081"
     volumes:
       - .:/app
-      - target/allure-results:/app/allure-results
+      - allure-results:/app/allure-results
 
 
   selenoid:
@@ -43,4 +43,4 @@ networks:
   mynet:
 
 volumes:
-  target/allure-results:
+  allure-results:
