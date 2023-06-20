@@ -43,4 +43,4 @@ networks:
   mynet:
 
 volumes:
-  allure-results:
+  target/allure-results:
