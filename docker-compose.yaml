@@ -13,8 +13,8 @@ services:
       context: .
     volumes:
       - ./allure-results:/app/allure-results
-#    command: mvn clean test allure generate /app/allure-results --clean -o /app/allure-report
-    command: ["powershell", "-c", "mvn clean test -Dsurefire.suiteXmlFiles=testng.xml && allure generate /app/allure-results --clean-results -o /app/allure-report"]
+    command: mvn clean test -Dsurefire.suiteXmlFiles=testng.xml && allure generate /app/allure-results
+#    command: ["powershell", "-c", "mvn clean test -Dsurefire.suiteXmlFiles=testng.xml && allure generate /app/allure-results --clean-results -o /app/allure-report"]
     ports:
       - "80:80"
 #    ports:
