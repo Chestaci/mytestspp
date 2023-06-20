@@ -11,12 +11,13 @@ services:
       - mynet
     build:
       context: .
-    volumes:
-      - ./target/allure-results:/app/allure-results
-    command: mvn clean test allure generate /app/allure-results
-#    command: ["powershell", "-c", "mvn clean test -Dsurefire.suiteXmlFiles=testng.xml && allure generate /app/allure-results --clean-results -o /app/allure-report"]
+#    volumes:
+#      - ./target/allure-results:/app/allure-results
+    command: mvn clean test allure:report
+    environment:
+      - ALLURE_RESULTS_PATH=/app/allure-results
     ports:
-      - "80:80"
+      - "8081:8081"
 #    ports:
 #      - 0.0.0.0:5555:5555
 #    extra_hosts:
