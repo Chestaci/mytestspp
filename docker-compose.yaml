@@ -17,8 +17,8 @@ services:
     ports:
       - "8081:8081"
     volumes:
-      - .:/app
-      - allure-results:/app/allure-results
+#      - .:/app
+      - target/allure-results:/app/allure-results
 
 
   selenoid:
@@ -42,5 +42,5 @@ services:
 networks:
   mynet:
 
-volumes:
-  allure-results:
+#volumes:
+#  allure-results:
