@@ -14,8 +14,8 @@ services:
     command: mvn clean test allure:report
     environment:
       - ALLURE_RESULTS_PATH=/app/allure-results
-    ports:
-      - "8081:8081"
+#    ports:
+#      - "8081:8081"
     volumes:
       - .:/app
       - ./target/allure-results:/app/allure-results
