@@ -12,7 +12,7 @@ services:
     build:
       context: .
 #    command: mvn test allure:report
-    command: ["cmd", "/c", "mvn clean test allure generate /app/target/allure-results --clean-results -o /app/allure-report"]
+    command: ["mvn clean test allure generate /app/target/allure-results --clean-results -o /app/allure-report"]
     volumes:
       - maven-cache:/root/.m2
       - ./allure-results:/app/target/allure-results
