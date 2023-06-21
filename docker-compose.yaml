@@ -16,7 +16,8 @@ services:
       - selenoid
     networks:
       - mynet
-    command: mvn clean test allure:report
+    command: mvn clean test
+#    command: mvn clean test allure:report
 
 #  mytest:
 #    image: mytest
