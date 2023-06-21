@@ -11,8 +11,6 @@ services:
       - selenoid
       - selenoid-ui
     working_dir: /app
-#    links:
-#      - selenoid
     networks:
       - mynet
     command: mvn clean test
@@ -31,8 +29,6 @@ services:
     image: "aerokube/selenoid-ui"
     networks:
       - mynet
-#    links:
-#      - selenoid
     ports:
       - "8080:8080"
     command: ["--selenoid-uri", "http://selenoid:4444"]
