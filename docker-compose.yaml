@@ -11,9 +11,9 @@ services:
       - mynet
     build:
       context: .
-#    command: mvn test allure:report
+    command: mvn test allure:report
 #    command: ["powershell", "-c", "mvn clean test allure generate /app/target/allure-results --clean-results -o /app/allure-report"]
-    command: ["sh", "-c", "rm -rf /app/target/allure-results/* && mvn test && allure generate /app/target/allure-results --clean -o /app/allure-report"]
+#    command: ["sh", "-c", "rm -rf /app/target/allure-results/* && mvn test && allure generate /app/target/allure-results --clean -o /app/allure-report"]
 #    command: ["sh", "-c", "mvn test && allure generate /app/target/allure-results --clean -o /app/allure-report"]
     volumes:
       - maven-cache:/root/.m2
