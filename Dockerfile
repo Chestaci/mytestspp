@@ -3,6 +3,7 @@ FROM avalonlab/maven-openjdk14
 WORKDIR /app
 
 COPY . .
+RUN chmod -R 777 /app/target/allure-results/
 #COPY pom.xml .
 #COPY src /src
 
