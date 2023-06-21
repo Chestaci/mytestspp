@@ -4,7 +4,7 @@ services:
   mytest:
     image: avalonlab/maven-openjdk14
     volumes:
-      -  .:/app
+      - .:/app
       - maven-cache:/root/.m2
     container_name: mytest
     depends_on:
@@ -39,8 +39,8 @@ services:
 
 networks:
   mynet:
-#    driver:
-#      bridge
+    driver:
+      bridge
 
 volumes:
   maven-cache:
