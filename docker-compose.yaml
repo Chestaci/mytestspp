@@ -11,16 +11,9 @@ services:
       - mynet
     build:
       context: .
-#    command: mvn clean test
     command: mvn test allure:report
-#    environment:
-#      - ALLURE_RESULTS_PATH=/app/allure-results
-#    ports:
-#      - "8081:8081"
     volumes:
       - maven-cache:/root/.m2
-#      - allure-results:/app/allure-results
-#      - /my_al_rez:/app/allure-results
       - ./allure-results:/app/target/allure-results
 
   selenoid:
@@ -47,4 +40,4 @@ networks:
 
 volumes:
   maven-cache:
-#  allure-results:
+
