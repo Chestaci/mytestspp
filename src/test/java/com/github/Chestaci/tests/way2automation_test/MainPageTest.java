@@ -132,12 +132,12 @@ public class MainPageTest{
     /**
      * Падающий тест для демонстрации прикрепления скриншотов в отчёте при падении теста
      */
-//    @Test(priority = -5)
-//    @Severity(value = SeverityLevel.TRIVIAL)
-//    @Feature("Падающий тест")
-//    @Story("Падающий тест для демонстрации прикрепления скриншотов в отчёте")
-//    public void failTestMainPage(){
-//        mainPage.scrollToElement(mainPage.footer);
-//        Assertions.fail("Fail main page test");
-//    }
+    @Test(priority = -5)
+    @Severity(value = SeverityLevel.TRIVIAL)
+    @Feature("Падающий тест")
+    @Story("Падающий тест для демонстрации прикрепления скриншотов в отчёте")
+    public void failTestMainPage(){
+        mainPage.scrollToElement(mainPage.footer);
+        Assertions.fail("Fail main page test");
+    }
 }
