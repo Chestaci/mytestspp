@@ -62,7 +62,7 @@ public class AuthorizationTest{
     @DataProvider(name = "authorizationData")
     public Object[][] getAuthorizationData() {
         return new Object[][]{
-                {"angula", "password", "12dfRAsE3!@#$%^&*"},
+                {"angular", "password", "12dfRAsE3!@#$%^&*"},
         };
     }
 
