@@ -8,4 +8,4 @@ COPY . .
 #COPY src /src
 
 #RUN mvn clean test
-RUN --user="$(id -u):$(id -g)"
+RUN -u $(id -u):$(id -g)
