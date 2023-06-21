@@ -21,7 +21,7 @@ services:
       - maven-cache:/root/.m2
 #      - allure-results:/app/allure-results
 #      - /my_al_rez:/app/allure-results
-      - allure-results:/app/target/allure-results
+      - ./allure-results:/app/target/allure-results
 
   selenoid:
     image: "aerokube/selenoid"
@@ -47,4 +47,4 @@ networks:
 
 volumes:
   maven-cache:
-  allure-results:
+#  allure-results:
