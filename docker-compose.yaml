@@ -11,8 +11,8 @@ services:
       - selenoid
       - selenoid-ui
     working_dir: /app
-    links:
-      - selenoid
+#    links:
+#      - selenoid
     networks:
       - mynet
     command: mvn clean test
