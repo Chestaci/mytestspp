@@ -12,7 +12,7 @@ services:
     build:
       context: .
 #    command: mvn clean test
-    command: mvn clean test allure:report
+    command: mvn test allure:report
 #    environment:
 #      - ALLURE_RESULTS_PATH=/app/allure-results
 #    ports:
