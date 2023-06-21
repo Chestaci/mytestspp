@@ -1,25 +1,42 @@
 version: '3.2'
 
 services:
+
   mytest:
-    image: mytest
+    image: avalonlab/maven-openjdk14
+    volumes:
+      -  .:/app
+      - maven-cache:/root/.m2
     container_name: mytest
-    user: 1000:1000
     depends_on:
       - selenoid
       - selenoid-ui
+    working_dir: /app
+    links:
+      - selenoid
     networks:
       - mynet
-    build:
-      context: .
-    command: mvn test allure:report
-#    command: ["powershell", "-c", "mvn clean test allure generate /app/target/allure-results --clean-results -o /app/allure-report"]
-#    command: ["sh", "-c", "rm -rf /app/target/allure-results/* && mvn test && allure generate /app/target/allure-results --clean -o /app/allure-report"]
-#    command: ["sh", "-c", "mvn test && allure generate /app/target/allure-results --clean -o /app/allure-report"]
-#    command: ["sh", "-c", "-u $(id -u):$(id -g) && mvn test && allure generate /app/target/allure-results --clean -o /app/allure-report"]
-    volumes:
-      - maven-cache:/root/.m2
-      - ./allure-results:/app/target/allure-results
+    command: mvn clean test allure:report
+
+#  mytest:
+#    image: mytest
+#    container_name: mytest
+#    user: 1000:1000
+#    depends_on:
+#      - selenoid
+#      - selenoid-ui
+#    networks:
+#      - mynet
+#    build:
+#      context: .
+#    command: mvn test allure:report
+##    command: ["powershell", "-c", "mvn clean test allure generate /app/target/allure-results --clean-results -o /app/allure-report"]
+##    command: ["sh", "-c", "rm -rf /app/target/allure-results/* && mvn test && allure generate /app/target/allure-results --clean -o /app/allure-report"]
+##    command: ["sh", "-c", "mvn test && allure generate /app/target/allure-results --clean -o /app/allure-report"]
+##    command: ["sh", "-c", "-u $(id -u):$(id -g) && mvn test && allure generate /app/target/allure-results --clean -o /app/allure-report"]
+#    volumes:
+#      - maven-cache:/root/.m2
+#      - ./allure-results:/app/target/allure-results
 
   selenoid:
     image: "aerokube/selenoid"
@@ -42,6 +59,8 @@ services:
 
 networks:
   mynet:
+    driver:
+      bridge
 
 volumes:
   maven-cache:
