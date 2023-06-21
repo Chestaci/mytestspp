@@ -19,9 +19,9 @@ services:
 #      - "8081:8081"
     volumes:
       - maven-cache:/root/.m2
-      - allure-results:/app/allure-results
+#      - allure-results:/app/allure-results
 #      - /my_al_rez:/app/allure-results
-#      - allure-results:/app/target/allure-results
+      - allure-results:/app/target/allure-results
 
   selenoid:
     image: "aerokube/selenoid"
