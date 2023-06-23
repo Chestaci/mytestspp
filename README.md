@@ -1,2 +1,1 @@
-# UIAutotests mytestspp
-# Test with Selenoid
+# UIAutotests with Selenoid
